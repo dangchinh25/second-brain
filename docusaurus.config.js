@@ -48,7 +48,7 @@ const config = {
       }),
     ],
   ],
-
+  plugins: [["@gracefullight/docusaurus-plugin-vercel-analytics"]],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
