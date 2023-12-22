@@ -1,3 +1,5 @@
+- Ref:
+	- https://www.youtube.com/watch?v=DQ5Cbt8DQbM
 ### Event
 - There are 2 kind of events in an *Event Driven Architecture* system (*EDA*)
 	- *Event/Message* contains information about something that happens, to notify others => Will be the focus
@@ -22,7 +24,7 @@
 ### Disadvantages
 - **Performances** due to the intermediate *Broker*
 - **Consistency** as there is some delay waiting for the *Broker* and all the *Consumers* to finish process all the *events*
-	- Ref: [[RDBMS#ACID]], [[Consistency patterns#Eventual Consistency]]
+	- Ref: [[RDBMS#ACID]], [[Consistency patterns#Eventual Consistency | Eventual Consistency]]
 - **Complexity** to the overall system
 
 ### When to use
