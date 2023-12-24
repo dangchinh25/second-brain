@@ -64,12 +64,12 @@ const config = {
         },
         items: [
           {
-            href: "https://chinhle.me",
+            to: "https://chinhle.me",
             position: "right",
             label: "🏡",
           },
           {
-            href: "https://github.com/dangchinh25",
+            to: "https://github.com/dangchinh25",
             position: "right",
             label: "🐙",
           },
