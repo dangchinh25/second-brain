@@ -1,0 +1,7 @@
+- This is slightly different from [[RDBMS#ACID]]
+- In multiservices architectures:
+	- *Atomicity* is an indivisible and irreducible set of operations that must all occur or none occur.
+	- *Consistency* means the [[Transactions]] brings the data only from one valid state to another valid state.
+	- *Isolation* guarantees that concurrent [[Transactions]] produce the same data state that sequentially executed [[Transactions]] would have produced.
+	- *Durability* ensures that committed [[Transactions]] remain committed even in case of system failure or power outage.
+- [[Transactions]] within a single service are ACID, but cross-service data consistency requires a cross-service transaction management strategy.

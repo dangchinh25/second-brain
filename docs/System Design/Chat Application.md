@@ -1,0 +1,25 @@
+![](https://i.imgur.com/Uchoif0.png)
+- WebSocket is to manage the connections to a browser from an app on server
+- Chat application with just WebSocket does not scale as the connection between Browser and Server is stateful, and we want to add more server to handle increasing traffic ⇒ We need a way to make server communicate with each other to deliver message from user connected to different server
+- Solution: **PubSub Architecture** (Redis is a popular choice)
+![](https://i.imgur.com/FR5S48j.png)
+- Here we have a Load Balancer in the middle to manage/route traffic to different server
+- There will be a 2 part websocket connection between Brower — Load Balancer — Server
+- The server will listen for websocket message, and for each new message the server will publish to Redis (utilizing PubSub feature of Redis)
+- Everytime Redis receives new message, it will again push them to every subscribed server
+- E.g:
+    - Client1, Client2, Client3 in the same group chat
+    - Client1 connect to Server1
+    - Client2 connect to Server2
+    - Client3 connect to Server3
+    - Client1 send new message and it is routed to Server1
+    - Server published message to Redis
+    - Redis receives message and push to all subscriber of the current topic/room/group which is Server2 and Server3
+    - Server2 and Server3 receive new message and populate back to Client2 and Client3
+- Ref:
+    - [https://socket.io/get-started/private-messaging-part-4/](https://socket.io/get-started/private-messaging-part-4/)
+- Notes:
+    - When deploying multiple SocketIO servers, we need to enable sticky session, if HTTP long-polling is enabled (which is the default)
+    - Sticky session is to make sure that all requests associated with a particular session ID reach the process that originated them
+    - Without sticky session, you will experience HTTP 400 errors due to "Session ID unknown"
+    - [https://socket.io/docs/v4/using-multiple-nodes/#](https://socket.io/docs/v4/using-multiple-nodes/#)
