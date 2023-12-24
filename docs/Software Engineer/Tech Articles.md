@@ -1,0 +1,1 @@
+- Grab's user segmentation: https://engineering.grab.com/streamlining-grabs-segmentation-platform
