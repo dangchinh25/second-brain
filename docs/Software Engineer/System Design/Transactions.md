@@ -1,3 +1,0 @@
-> A *Transaction* is a unit of work or a sequence of operations performed by the application that must be executed in an all-or-nothing fashion. This means that either all the operations within the transaction are successfully completed, or none of them are, to maintain data consistency and integrity.
-
--   In distributed systems, a transaction is a fundamental concept used to ensure the integrity and consistency of data when multiple processes or nodes work together to perform a series of related operations.
