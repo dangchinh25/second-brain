@@ -1,4 +1,4 @@
-
+This is an overview of all the attractions in SLC.
 # Ensign Peak Overlook
 - Less than a mile, short and easy
 - 500 feet in elevation gain
