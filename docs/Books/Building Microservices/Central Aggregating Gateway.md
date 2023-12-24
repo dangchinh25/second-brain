@@ -1,4 +1,3 @@
-# Overview
 - A central-purpose aggregating gateway sits between external user and multiple downstream microservices and performs call filtering and aggregation for all user interfaces.
 - Without aggregation, an user interface may have to make multiple calls to fetch required information, often throwing away data was retrieved but not needed.
 - With an aggregating gateway, we can issue a single call from the user interface to the gateway. The aggregating gateway then carries out all the required calls, combines the results into a single response, and throws away any data that the user interface doesn't need. => *Aggregation/Orchestration problem*^07a768

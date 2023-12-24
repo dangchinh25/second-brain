@@ -1,3 +1,4 @@
+
 # Ensign Peak Overlook
 - Less than a mile, short and easy
 - 500 feet in elevation gain
