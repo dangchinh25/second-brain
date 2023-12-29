@@ -1,3 +1,4 @@
+- Ownership enables Ruts to make memory safety guarantees without needing a garbage collector. There are several related features that help accomplish this: `borrowing`, `slices` 
 # Function
 - The mechanics of passing a value to a function are similar to those when assigning a value to a variable. Passing a variable to a function will move or copy, just as assignment does. 
 ```rust

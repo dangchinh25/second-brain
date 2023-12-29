@@ -11,7 +11,7 @@
 	- Immutable by default: `let x = 5;`
 	- To make it be mutable: `let mut x = 5;`
 	- Constant: `const x: i32 = 10;` => Need to specify a type, can't use `mut`
-	- Can redeclare a variable with a different name to *shadow*, basically creates a copy of the original variable and any change to the shadow variable does not affect the main one.
+	- Can redeclare a variable with a different value to *shadow*, basically creates a copy of the original variable and any change to the shadow variable does not affect the main one.
 		- In effect, the second variable overshadows the first, taking any uses of the variable name to itself until either it itself is shadowed or the scope ends.
 ```rust
 let x = 5;
@@ -117,6 +117,50 @@ fn main() {
 - We create slices using a range within brackets by specifying `[starting_index..ending_index]`, where `starting_index` is the first position in the slice and `ending_index` is **one more than the last position** in the slice. 
 - Internally, the slice data structure stores the starting position and the length of the slice, which corresponds to `ending_index` minus `starting_index`. So, in the case of `let world = &s[6..11];`, `world` would be a slice that contains a pointer to the byte at index 6 of `s` with a length value of `5`.
 
+- Struct
+	- Work pretty much similar to `Types/Interface` in Typescript
+	- Also support dot notation for accessing data, spread operator, and short hand syntax... the same way we work with Object in Typescript
+	- We can also add a `Method` to a struct, similar to a method in a `Class` in other languages
+```rust
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 { // Struct method has to have &self as the first args
+        self.width * self.height
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        rect1.area()
+    );
+}
+```
+
+- We want to [[Ownership#References and Borrowing|borrow]] the data in the struct, not write to it => Use `&self`
+- We can also do `Class method` or `Associated function without using &self` or `static method` in Rust
+```rust
+impl Rectangle {
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
+}
+
+let sq = Rectangle::square(3); // The `square` function is namespaced by the struct. The '::' syntax is used for both associated functions and namespaces created by modules.
+```
 ## Memory and Allocation
 - In the case of a string literal, we know the contents at compile time, so the text is hardcoded directly into the final executable. This is why string literals are fast and efficient => It is using [[Memory#Stack | Stack]] memory. 
 - With the `String` type, in order to support a mutable, growable piece of text, we need to allocate an amount of memory on the [[Memory#Heap | Heap]], unknown at compile time.

@@ -11,7 +11,11 @@
 - Bootstrap app
 	- If use NextJS fullstack => Manual but in the same repo, create-t3-app default to use PlanetScale, which we don't want
 	- Otherwise, traditional bootstrap FE and BE seperately
-- ORM: Prisma/Drizzle
+- ORM: 
+	- Prisma: Matured but the query engine is sometimes questionable, a lot of feature, plugin, etc => Generally good but not really performant
+	- Drizzle: Still in beta, not matured
+	- Kysely: Best of both world of Prisma and Drizzle, typesafe and good DX, while maintaining raw SQL performant. Can also combined with Prisma to use its migration engine and then use `prisma-kysely` packages to generate kysely types => A little bit more setup than Prisma but really worth considering
+		- Worth mentioning that we should not always rely on `kysely codegen` packages or similar, we can use it as a reference point but we should always keep a version inside our code and use it to init `kysely` instead of the generated one in `node_modules` => Have more control over our types 
 - Authentication: Auth.JS/NextAuthJS/Clerk
 - Logging: Axiom
 - Deployment:

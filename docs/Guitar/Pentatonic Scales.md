@@ -1,13 +1,11 @@
 - 5 notes in any [[Scale]] that sounds good to each other
 - Basic pattern: 
-```
-e|-1-----4-| 
-B|-1-----4-| 
-G|-1---3---|
-D|-1---3---| 
-A|-1---3---| 
-E|-1-----4-| 
-```
+
+Minor:
+![](https://i.imgur.com/lHSEMo0.png) ^ebdcb9
+
+Major:
+![](https://i.imgur.com/LwLCNFF.png) ^df9d10
 
 ## Usage
 1. Find the key of the song
