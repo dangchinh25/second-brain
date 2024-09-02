@@ -7,6 +7,7 @@
 	- When generic types has multiple type parameters, give all the parameters a descriptive name and prefix with a T to indicate it's a generic type
 	![](https://i.imgur.com/sWV5Zgi.png)
 
+- NoIner: https://www.youtube.com/watch?v=mkuChhuHO50
 # Generics
 - **Generics on type level**
 ![](https://i.imgur.com/KjJuWFv.png)

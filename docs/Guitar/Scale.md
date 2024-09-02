@@ -6,13 +6,13 @@
 
 ## Major Scale
 - To differentiate if the scale is major or minor, we will use the **distance** between the notes in the scale.
-- The pattern for **Major Scale** is: ^7b17ce
+- The pattern for **Major Scale** is: ^7b17ce (*3 to 4 is half*)
 ```
 Whole – Whole –  Half – Whole – Whole – Whole – Half
 ```
 
 - Using this pattern with the G major scale, you can see how the scale is built: G - A - B - C - D - E - F# - G
-
+z
 - From G to A is one whole step, or two half steps (2 semitones) (G – G# – A)
 - From A to B is one whole step, or two half steps (A – A# – B)
 - From B to C is one half step (B – C)
@@ -34,7 +34,7 @@ Whole – Whole –  Half – Whole – Whole – Whole – Half
 - The major scale contains a **major 3rd**, meaning it is **2 whole step away** from the root
 - The minor scale contains a **minor 3rd**, a flattened version of the **major 3rd**, that is **1.5 steps away** from the root.
 
-- The pattern for the **Minor Scale** is: ^94b030
+- The pattern for the **Minor Scale** is: ^94b030 (*2 to 3 is half*)
 ```
 Whole – Half – Whole – Whole – Half – Whole – Whole
 ```

@@ -40,7 +40,33 @@ def dfs_recursion(adj_list, start, end, visited):
 ```
 
 - Basic implementation of DFS with stack, only work with adjacency list
-    - NOTES: If we find the chance to use DFS but the original data structure is not adjacency list, we can iterate over it and construct our own adjacency list to use this DFS implementation (**Important partern**)
+    - NOTES: If we find the chance to use DFS but the original data structure is not adjacency list, we can iterate over it and construct our own adjacency list to use this DFS implementation (**Important pattern**)
     - Another pattern is **counting**, here we **may need to traverse through the graph to check all possible path** and stuff like that ⇒ Initialize an array to track all paths outside the dfs helper, and pass in as the parameter for every call and update the array in each **DFS call**
         - This also applies to problems where there maybe a cycle inside the graph, we can initialize an array(usually use **set** rather than array as it has O(1) lookup and also preserve unique characteristic) **visited** to keep track of visited node, and pass in as parameter for the dfs helper and update the array with new node with each call
         - Another key point is that we can setup for the dfs helper to return something to signal the change in the count, for example, the dfs will traverse all the node and return true, which means that the count can be increase
+### Helpful Pattern
+- Traverse all root to leaves path
+- Sometimes we have to traverse all possible path and keep record of those paths
+https://leetcode.com/problems/binary-tree-paths/
+- We can extend this for more complex requirement
+	- E.g: since we keep track of all the path, we can easily calculate path sum or node depths, etc
+```python
+def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+	res = []
+	
+	def dfs(node, cur_path):
+		nonlocal res
+		if not node:
+			return
+		cur_path.append(node.val)
+		if not node.left and not node.right:
+			res.append('->'.join([str(i) for i in cur_path]))
+			return
+		if node.left:
+			dfs(node.left, cur_path.copy())
+		if node.right:
+			dfs(node.right, cur_path.copy())
+	
+	dfs(root, [])
+	return res
+```

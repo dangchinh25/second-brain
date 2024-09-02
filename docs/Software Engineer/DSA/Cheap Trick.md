@@ -1,5 +1,6 @@
 **1. Swap all element equal to some value/criteria to the end of the array**
 - Have a pointer to hold the first occurence of the value, if the pointer at any given time points to an element with value different from the target value, we can leave it be cause the element will be swap with itself so nothing happens
+- [This problem](https://leetcode.com/problems/move-zeroes/description/) is a perfect example
 ```python
 def removeElement(self, nums: List[int], val: int) -> int:    
 	firstOccurence = 0
@@ -10,6 +11,9 @@ def removeElement(self, nums: List[int], val: int) -> int:
 	
 	return firstOccurence
 ```
+
+**2. Boyer-Moore Voting algorithm**
+- https://leetcode.com/problems/majority-element/solutions/4475857/python-boyer-moore-voting-algorithm-fully-explained-space-o-1
 
 **2. Check palindrome using middle out instead of 2 pointer from 2 side in may reduce the overall time complexity**
 
@@ -38,3 +42,22 @@ def removeElement(self, nums: List[int], val: int) -> int:
 3.  **Subset**: can be thought as a selection of objects form the original set.
     -   Example: subset of ABCD: 'A', 'B', 'C', 'D,' 'A,B' , 'A,C', 'A,D', 'B,C', 'B,D', 'C,D', 'A,B,C', ...
 
+**12. When dealing with string or array, sometimes it is helpful and make life easier by using string/array slicing/concatenating 
+	- For example with [this problem](https://leetcode.com/problems/valid-palindrome-ii/description/) , we can simulate the 'delete character' action by slicing the string and combine it without the specify character
+```python
+def validPalindrome(s: str) -> bool:
+	l, r = 0, len(s) - 1
+	
+	while l <= r:
+		if s[l] != s[r]:
+			s1 = s[:l] + s[l + 1 :]
+			s2 = s[:r] + s[r + 1 :]
+			
+			return s1 == s1[::-1] or s2 == s2[::-1]
+	
+		l += 1
+		
+		r -= 1
+	
+	return True
+```

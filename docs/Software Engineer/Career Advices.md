@@ -14,3 +14,8 @@
 		- We also need to be aware of the target date, and avoid doing anything that may delay the target date. Always try go for quick win (not just quick win but more like how much can we still accomplish without the complicated stuff, can it be delayed to implement after the target date)
 		- Whenever we discuss about an approach, we can have many ideas about how to resolve a Cons, and then we may go really deep into that approach with that Cons (one solution may lead to another Cons of that solution). We call this branching of ideas. We may and we will have multiple branches and decide to explore each one at a time, always try not to go too deep cause this is like we try an approach and we just kinda try too much to make it work, while it’s better to go back and explore another branch. The important thing is that we have to know when to go back, and where to go back. 
 		- While discussing, we can come up with thing that based on our own assumption, we can explore that idea and see if it is worth exploring, or if it is not that big/unlikely we can just ignore it and add metrics to verify our assumption.
+
+
+# Misc
+- How to become a more valuable engineer: https://www.youtube.com/watch?v=tIgIF5lve8U
+	- The whole video is great but the last 5-6 minutes are golden

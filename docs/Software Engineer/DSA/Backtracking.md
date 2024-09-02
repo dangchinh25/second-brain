@@ -23,9 +23,10 @@ void backtrack(arguments) {
 ```
 - The idea is that we keep a `set/array` or sth similar to keep track of what is currently being explored
 - Before the actual processing we add new item in the `set/array` to indicate that we gonna explore that item, and after done processing we pop the item out to begin a new loop to explore another item.
+- **It's also worth noting that usually the working set holds the value that later on can be pushed to the result array
 > Choose => Process => Unchoose
 - It is also important to understand what argument should we used for the `helper()` function that will explore an item. Normally it's gonna be the `location`(?) or some kind of identifier for the item that we are current tracking
-- Ref: [[Blind 75-150#^f002bb | Combination sum]]
+- Ref: [[Blind 75-150#^3a0803| Combination sum]]
 - Example: 
 https://leetcode.com/problems/subsets/
 ```python
@@ -74,15 +75,18 @@ https://leetcode.com/problems/combinations/
 ```python
 def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
-        def dfs(nums, current):
-            if not nums:
-                res.append(current.copy())
-                return
-            for i in range(len(nums)):
-                dfs(nums[:i] + nums[i+1:], current + [nums[i]])
-                
-        dfs(nums, [])
-        return res
+		working = []
+		def backtrack(nums):
+			if not nums:
+				res.append(working.copy())
+				return
+			for i in range(len(nums)):
+				working.append(nums[i])
+				backtrack(nums[:i] + nums[i+1:])
+				working.pop()
+		backtrack(nums)
+		
+		return res
 ```
 ## Different vs Dynamic Programming
 - Unlike [[DP | Dynamic Programming]], backtracking is typically not looking for one optimal situation, but is instead looking for **all that satisfy some criteria**.
