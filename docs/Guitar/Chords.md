@@ -130,6 +130,14 @@ Minor:
 ![](https://i.imgur.com/x1ihgmw.png)
 
 
+
+# Sus4 Chords
+- **Sus** stands for **suspended** and it describes the sound of this type of chord well.
+- The **4** stands for the note that's a **4th interval** away from your root note.
+- A major chord is made up of a **root**, the major **3rd** interval, and the **5th**.
+- For a sus4 chord voicing, we’re **exchanging** the **3rd** for the **4th**.
+![](https://i.imgur.com/DVIeldz.png)
+
 # 7th Chords
 
 ## Major 7th: 1-3-5-7 notes
