@@ -1,4 +1,0 @@
-- The stack stores values in the order it gets them and removes the values in the opposite order, commonly referred to as `last in, first out`.
-- Think of a stack of plates, when you add more plates , you put them on top of the pile, and when you need a plate, you take one off the top. 
-- Adding or removing plates from the middle or bottom wouldn't be efficient.
-- Adding data is called `pushing` to the stack, and removing data is called `popping` from the stack.

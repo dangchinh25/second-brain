@@ -1,2 +1,0 @@
-- A powerful library for simplifying data fetching and state management in React. It automatically caches data, updates the UI, and handles mutations and errors, leading to more performant and user-friendly apps.
-- [This Youtube video](https://www.youtube.com/watch?v=r8Dg0KVnfMA) should give us enough to understand what is going on.
