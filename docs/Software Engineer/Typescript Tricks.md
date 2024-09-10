@@ -8,6 +8,9 @@
 	![](https://i.imgur.com/sWV5Zgi.png)
 
 - NoIner: https://www.youtube.com/watch?v=mkuChhuHO50
+
+# TsConfig
+- Good watch: https://www.youtube.com/watch?v=xQgBJIye5EU
 # Generics
 - **Generics on type level**
 ![](https://i.imgur.com/KjJuWFv.png)

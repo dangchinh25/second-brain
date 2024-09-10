@@ -1,6 +1,5 @@
 
-
-# setState
+## setState
 - Good read: https://chatgpt.com/share/79fab4bb-a4a9-4a58-8e55-51d216369c16
 - React's state update is asynchronous, most of the time it is fine but sometimes it creates some headache due its asynchronous + batching behavior
 	- https://dev.to/bytebodger/updating-react-state-inside-loops-2dbf
