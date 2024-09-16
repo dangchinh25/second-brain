@@ -70,7 +70,7 @@ const graphState: StateGraphArgs<IState>["channels"] = {
 };
 ```
 
-- **Checkpoint**
+- **Checkpoint** ^7c8e71
 	- When we execute the graph, it will create a checkpoint after each internal execution step.
 	- By default it will not create anything unless we bind it with a *Checkpointer*
 	- Once you start [checkpointing](https://langchain-ai.github.io/langgraphjs/how-tos/time-travel/persistence.ipynb) your graphs, you can easily **get** or **update** the state of the agent at any point in time. This permits a few things:

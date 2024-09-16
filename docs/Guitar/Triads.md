@@ -14,7 +14,7 @@
 - Major triad
 ![](https://i.imgur.com/ncqjuZT.png)
 
-## 2-3-4 strings
+ ## 2-3-4 strings
 - Major triad
 ![](https://i.imgur.com/8yamt2O.png)
 - 1st inversion
@@ -55,6 +55,6 @@
 ![](https://i.imgur.com/aB8ekjk.png)
 - Minor triad
 ![](https://i.imgur.com/hdTdpSi.png)
-- 1st inversion
+  - 1st inversion
 ![](https://i.imgur.com/tvpN7qM.png)
 
