@@ -1,0 +1,1 @@
+- We can also use a trick to use Function Calling to guarantee return structured output adhere to the provided schema
