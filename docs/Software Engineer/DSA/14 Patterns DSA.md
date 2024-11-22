@@ -51,6 +51,7 @@
 - Common problems you use the fast and slow pointers pattern 
 	- Binary Tree Level Order Traversal
 	- Zigzag Traversal
+- [[Tree]]
 
 ## 8. Tree DFS
 - Tree DFS is based on the Depth First Search (DFS) technique to traverse a tree.
@@ -64,6 +65,7 @@
 - Common problems you use the fast and slow pointers pattern 
 	- Sum of Path Numbers
 	- All Paths for a Sum
+- [[Tree]]
 ## 9. Two heaps
 - In many problems, we are given a set of elements such that we can divide them into two parts. To solve the problem we are interested in knowing the smallest element in one part and the biggest element in the other part. This pattern is an efficient approach to solve such problem.
 - This pattern uses two heaps. At any time the median of the current list of numbers can be calculated from the top element of the two heaps
