@@ -1,6 +1,7 @@
 ## Though Process
 - Step to build solution
-	- Decide what we have to do each step to bring us to the next valid state. Write down the recursive calls that implement this behavior
+	- **Decide what we have to do each step to bring us to the next valid state**. Write down the recursive calls that implement this behavior
+		- This can be think of at each step and each valid state, **what are the choices that we can make**
 	- Come up with a way to construct the next optimal solution with all the data you got from subsequent recursive calls. Add a base case and complete the recursive function. => Bruteforce solution
 	- Notice you have limited set of possible arguments combinations and cache the return value, so you avoid calling the function twice with the same argument => Memoization
 	- Convert Memoization solution to use Tabulation (Bottom-up approach)
@@ -14,7 +15,7 @@
 	- Remove a base case as it is not needed anymore, and make sure you've initialized the dp table with values that cover the base case
 
 **NOTES**: 
-- Sometimes it is easy to think about a bottom up approach rather than recursion. 
+- Sometimes it is easier to think about a bottom up approach rather than recursion. 
 - Sometimes if we given a grid or maybe the state involve 2 variable we can use a MxN table for tabulation (2D Dynamic Programming)
 
 ## Patterns
@@ -168,6 +169,7 @@ def uniquePaths(self, rows: int, cols: int) -> int:
         return dp(0, 0)
 ```
 
+- [[Blind 75-150#^7db511 | Notes]]
 ### Merging Interval
 - Practice: [DP(merging intervals)](https://leetcode.com/list/?selectedList=o9karism#)
 - Statement:
@@ -184,7 +186,7 @@ dp[i][j] = dp[i][k] + result[k] + dp[k+1][j]
 ### DP on String
 - Practice: [DP on strings](https://leetcode.com/list?selectedList=o9kae6yh#)
 - Statement
-> General problem statement for this pattern can vary but most of the time you are given two strings where lengths of those strings are not big
+> General problem statement for this pattern can vary but most of the time you are given two strings where **lengths of those strings are not big**
 > 
 > Given two string s1 and s2 return some result
 - Approach:
@@ -290,6 +292,106 @@ def rob(self, nums: List[int]) -> int:
         return gain[-1]
 ```
 
+## 2D DP
+- Use **2D DP** if the problems depends on two incides or dimensions
+	- **Knapsack problems** where the states depends on the item index and the remaining capacity
+	- **String problems**: Where we compare characters of two string
+	- **Grid problems**: Path finding
+- This explain the thought process behind 2d array pretty well: https://www.youtube.com/watch?v=Mjy4hd2xgrs
+	- Ref: [[Blind 75-150#^df7a0c | Coin Change 2]]
+- **Though process**: 
+	- Define the subproblem => what does `dp[i][j]` represents
+	- Identify the dimensions
+	- Initialize base case
+	- Define recurrence relation using subproblems
+	- How to iterate the tables
+
+
+- https://leetcode.com/problems/longest-common-subsequence/
+```python
+# At each cell, store the result of the subproblem which is the LCS of the first character in text1 and first character in text2
+def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        m, n = len(text1), len(text2)
+        dp = [[0 for i in range(n+1)] for j in range(m+1)]
+
+        for i in range(m-1, -1, -1):
+            for j in range(n-1, -1, -1):
+                if text1[i] == text2[j]:
+                    dp[i][j] = 1 + dp[i+1][j+1]
+                else:
+                    dp[i][j] = max(dp[i+1][j], dp[i][j+1])
+        
+        return dp[0][0]
+```
+- https://leetcode.com/problems/edit-distance
+```python
+# At each cell, store the minimum number of operations to convert the first i character of word1 to first j characters of word2
+def minDistance(self, word1: str, word2: str) -> int:
+        rows, cols = len(word1), len(word2)
+        dp = [[0 for i in range(cols + 1)] for j in range(rows + 1)]
+
+        for i in range(rows + 1):
+            dp[i][0] = i
+        for j in range(cols+1):
+            dp[0][j] = j
+
+        for i in range(1, rows + 1):
+            for j in range(1, cols + 1):
+                if word1[i-1] == word2[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                else:
+                    insert = dp[i][j-1] + 1
+                    delete = dp[i-1][j] + 1
+                    replace = dp[i-1][j-1] + 1
+                    dp[i][j] = min(insert, delete, replace)
+        
+        return dp[-1][-1]
+```
+- https://leetcode.com/problems/delete-operation-for-two-strings/
+```python
+def minDistance(self, word1: str, word2: str) -> int:
+        rows, cols = len(word1), len(word2)
+        dp = [[0 for i in range(cols+1)] for j in range(rows + 1)]
+
+        for i in range(rows + 1):
+            dp[i][0] = i
+        for j in range(cols + 1):
+            dp[0][j] = j
+
+        for i in range(1, rows+1):
+            for j in range(1, cols+1):
+                if word1[i-1] == word2[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                else:
+                    del1 = dp[i-1][j] + 1
+                    del2 = dp[i][j-1] + 1
+                    dp[i][j] = min(del1, del2)
+        
+        return dp[-1][-1]
+```
+- https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings
+```python
+def minimumDeleteSum(self, s1: str, s2: str) -> int:
+        rows, cols = len(s1) + 1, len(s2) + 1
+        dp = [[0 for i in range(cols)] for j in range(rows)]
+
+        for i in range(1, rows):
+            dp[i][0] = dp[i-1][0] + ord(s1[i-1])
+        
+        for i in range(1, cols):
+            dp[0][i] = dp[0][i-1] + ord(s2[i-1])
+
+        for i in range(1, rows):
+            for j in range(1, cols):
+                if s1[i-1] == s2[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                else:
+                    del1 = dp[i-1][j] + ord(s1[i-1])
+                    del2 = dp[i][j-1] + ord(s2[j-1])
+                    dp[i][j] = min(del1, del2)
+        
+        return dp[-1][-1]
+```
 ## Variant
 ### Longest Increasing Subsequence
 - Problems
@@ -301,14 +403,128 @@ def rob(self, nums: List[int]) -> int:
 [https://leetcode.com/problems/delete-and-earn/](https://leetcode.com/problems/delete-and-earn/)  
 [https://leetcode.com/problems/longest-string-chain/](https://leetcode.com/problems/longest-string-chain/)
 -  Travel from right to left so that we have small case/subproblem already handled as when we process a number, we know that all the number after it has already been processed
+	- E.g: When we at 3, and we meet 5 we can already know what is the maximum that can be obtained after 5 (because we traverse from right to left and populate the *memoization table* )
 - The smallest subproblem is the element at the end of the array, at which there is always only 1 result. We traverse from right to left to use this smallest case and gradually build bigger case
 - If we need to know the number of times each subsequence length appear, we can have another array to save it, or instead of using a table like normal dp we can use a hashmap with key is the index and value is the length and its number of occurence
 - Ref [[Blind 75-150#^850c48 | Longest Increasing Subsequence]]
 
+## Algorithm
+### Kadane
+- Kadane’s algorithm is a popular method used to solve the **maximum subarray sum problem** efficiently. The goal is to find the maximum sum of a contiguous subarray within a given one-dimensional array of numbers, which can include negative values.
+1. **Iterate through the array**: At each position, determine the maximum sum of the subarray ending at that position.
+2. **Dynamic programming principle**:
+	• Keep track of the maximum subarray sum ending at the current index (current_sum).
+		- At each step, we update the current max as if **absolutely have to** include the current value
+		- By doing this, the next iteration can build up on this and also update its local maximum
+		- This only works because we are dealing with *contiguous subarray* so to update one local maxima we need to know the local maximum **right before it**
+	• Update current_sum as the maximum of:
+		• The current element itself (starting a new subarray).
+		• The sum of current_sum and the current element (extending the existing subarray).
+	• Maintain a global max_sum to store the maximum sum encountered so far. ^a4fdb4
+3. **Base case**: Start with the first element, as the maximum sum for a subarray including only the first element is itself.
+
+- A popular problem that utilizes this directly is https://leetcode.com/problems/maximum-subarray
+```python
+ def maxSubArray(self, nums: List[int]) -> int:
+	res = float('-inf')
+	current = 0
+
+	for num in nums:
+		current = max(num, current + num)
+		res = max(res, current)
+	
+	return res
+```
+
+> While this algorithm may feels like a specific answer to a Leetcode question, it demonstrate an instance of *Dynamic Programming* principle where use the solution to subproblems to build solution for the overall problem.
+
+- **Why Kadane’s Works**
+1. **Local Optimality**: At each step, we make the best local choice (add to the current subarray or start a new one).
+2. **Global Optimality**: By tracking the global maximum (max_sum), we ensure that the solution considers all possibilities across the array.
+3. **Avoid Redundant Work**: Instead of recalculating subarray sums repeatedly, Kadane’s reuses the computation from the previous step, achieving O(n) efficiency.
+
+- **Mental Model** [[DP#^a4fdb4]]
+> Kadane’s algorithm can be thought of as walking through the array while carrying a “bag” of the current subarray sum:
+	• If adding an item to the bag makes the total heavier in a good way, keep it.
+	• If the item is so heavy that it ruins the value of the bag, dump the bag and start fresh.
+	- By the end of the walk, the heaviest bag you carried at any point is your answer.
+
+- **When to Use Kadane’s Algorithm**
+	1.	Contiguous Subarrays are Required:
+	•	The problem explicitly asks for the maximum sum (or another optimization) of a contiguous subarray.
+	2.	Linear Time Complexity is Essential:
+	•	If the array size (n) is large and you need a solution in O(n), Kadane’s algorithm is perfect due to its efficiency.
+	3.	Problem Involves a Simple Aggregation Metric:
+	•	The problem revolves around computing sums, products, or similar metrics that can be handled incrementally with the same greedy approach (e.g., maximum sum, maximum product, etc.).
+	4.	Input Contains Both Positive and Negative Numbers:
+	•	Kadane’s algorithm efficiently handles arrays with mixed signs, leveraging its decision-making process (extend the current subarray or start fresh).
+	5.	Variants That Fit the Framework:
+Kadane’s logic can be adapted to problems like:
+	•	Maximum product subarray (with some modifications).
+	•	Maximum circular subarray sum.
+	•	Problems involving maximizing/minimizing a sequence under similar constraints.
+
+When Not to Use Kadane’s Algorithm
+
+Kadane’s algorithm isn’t a universal solution. Be cautious in the following scenarios:
+	1.	Non-Contiguous Subarrays:
+	•	Kadane’s algorithm assumes subarrays are contiguous. If the problem allows non-contiguous subarrays, other techniques like dynamic programming or combinatorial approaches may be required.
+	•	Example: “Find the maximum sum of non-adjacent elements.”
+	2.	Constraints Beyond Aggregation:
+	•	If the problem has additional constraints (e.g., subarray length, specific elements included or excluded), Kadane’s algorithm might not work directly.
+	•	Example: “Find the maximum sum of a subarray of exactly length k.”
+	3.	Arrays with Special Structures:
+	•	Kadane’s algorithm doesn’t handle:
+	•	Multi-dimensional arrays: The logic needs substantial modifications for 2D or higher-dimensional arrays (e.g., maximum sum rectangle in a matrix).
+	•	Non-linear structures: If the input isn’t a 1D array (e.g., graphs or trees), Kadane’s doesn’t apply directly.
+	4.	Edge Cases to Consider:
+	•	All-negative arrays: Kadane’s works, but you should confirm whether the problem allows subarrays of size 0 (in which case the answer might be 0 instead of the largest negative number).
+	•	Empty arrays: Ensure the problem definition handles this gracefully.
+	5.	Problem Focused on Subsequence, Not Subarray:
+	•	Kadane’s doesn’t work when the elements don’t need to be contiguous.
+	•	Example: “Find the longest increasing subsequence” or “Find the maximum sum subsequence.”
+	6.	Highly Complex Objectives:
+	•	If the objective isn’t straightforward (e.g., involving multiple variables or constraints), a more general dynamic programming solution might be better.
+	•	Example: “Partition the array into two subarrays such that the difference of their sums is minimized.”
+
+What to Look Out For
+
+Input and Problem Characteristics:
+	1.	Are subarrays required to be contiguous?
+	•	Yes → Kadane’s works.
+	•	No → Look for other algorithms.
+	2.	Does the problem involve finding maximum/minimum aggregation?
+	•	Yes → Kadane’s may be a good fit.
+	•	No → Kadane’s is unlikely to help.
+	3.	Are there additional constraints?
+	•	Yes → Kadane’s needs modification or might not be suitable.
+
+Common Alternatives to Kadane’s Algorithm
+
+When Kadane’s doesn’t work, consider these alternatives:
+	1.	Dynamic Programming:
+	•	For problems with additional constraints or involving non-contiguous subsequences.
+	•	Example: “Maximum sum of non-adjacent elements.”
+	2.	Sliding Window Technique:
+	•	For problems with fixed-length subarrays.
+	•	Example: “Find the maximum sum of a subarray of length k.”
+	3.	Divide and Conquer:
+	•	For finding maximum subarray sums but with potential for parallelization.
+	•	Example: Divide the array into halves and recursively compute the maximum subarray sum.
+	4.	Greedy Algorithms:
+	•	For problems involving subsequences or where local optimization leads to global optimization.
+	5.	Multi-dimensional Algorithms:
+	•	For 2D arrays or higher-dimensional structures.
+	•	Example: “Kadane’s for 2D matrices” or “Maximum sum rectangle.”
 ## Resources
+- Must read:
+	- https://leetcode.com/discuss/study-guide/458695/Dynamic-Programming-Patterns
+	- https://leetcode.com/discuss/study-guide/1308617/Dynamic-Programming-Patterns
+- Problems set:
+	- https://leetcode.com/discuss/general-discussion/1000929/solved-all-dynamic-programming-dp-problems-in-7-months
+	- https://www.reddit.com/r/leetcode/comments/14o10jd/the_ultimate_dynamic_programming_roadmap/
 - https://leetcode.com/discuss/study-guide/1490172/Dynamic-programming-is-simple
 - https://leetcode.com/discuss/career/1029985/losing-all-hopes-of-coding-please-help
 - https://leetcode.com/discuss/study-guide/662866/DP-for-Beginners-Problems-or-Patterns-or-Sample-Solutions
-- https://leetcode.com/discuss/study-guide/458695/Dynamic-Programming-Patterns
 - https://leetcode.com/discuss/general-discussion/475924/my-experience-and-notes-for-learning-dp
 - https://leetcode.com/problems/target-sum/discuss/455024/dp-is-easy-5-steps-to-think-through-dp-questions/424058

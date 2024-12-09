@@ -1,3 +1,4 @@
+- https://leetcode.com/tag/greedy/discuss/1476329/Useful-posts-from-LeetCode-discussions-for-personal-use-and-concept-revision
 ## 1. Sliding Window
 - Used to perform a required operation on a specific window size of a given array or linked list, such as finding the longest subarray containing all 1s
 - In some cases, the window size remains constant and in other cases the size grows or shrinks

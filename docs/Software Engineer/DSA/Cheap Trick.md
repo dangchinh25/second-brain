@@ -11,6 +11,7 @@ def removeElement(self, nums: List[int], val: int) -> int:
 	
 	return firstOccurence
 ```
+- An advance for this is this [Sort Colors](https://leetcode.com/problems/sort-colors/) problem, where we do this twice but in reverse
 
 **2. Boyer-Moore Voting algorithm**
 - https://leetcode.com/problems/majority-element/solutions/4475857/python-boyer-moore-voting-algorithm-fully-explained-space-o-1

@@ -53,3 +53,5 @@ def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
 	2. For a node at index i:
 	• **Left Child**: The left child is located at index 2i + 1.
 	• **Right Child**: The right child is located at index 2i + 2.
+
+- Sometimes it is helpful to think of a Tree as a [[Graph]], and we can create an adjacency list from a Tree and then traverse it like a Graph or apply Graph algorithm.

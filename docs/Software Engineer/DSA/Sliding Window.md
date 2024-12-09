@@ -29,6 +29,8 @@ for(right = 0; right < n; right++):
 - Pattern 3: Number of Subarrays questions
 	-  Before, we were finding the *min/max length* of subarray, now we want the *number of subarrays*
 	- [930. Binary Subarrays with Sum](https://leetcode.com/problems/binary-subarrays-with-sum/)
+	- https://leetcode.com/problems/subarray-product-less-than-k/
+	- **For these type of questions, we usually get ask to return the number of valid subarrays, we can calculate these easily by `res += right - left + 1`, the reason being by introducing a new element at `nums[right]`, we are adding that many new valid subarrays. E.g: [1,2] has 3 valid subarrays and [1,2,3] has 6 
 - Pattern 4: Prefixed Sliding Windows
 	- TBD
 	- [930. Binary Subarrays with Sum](https://leetcode.com/problems/binary-subarrays-with-sum/)
@@ -36,8 +38,8 @@ for(right = 0; right < n; right++):
 	- [Count Number of Nice Subarrays](https://leetcode.com/problems/count-number-of-nice-subarrays/)
 	- [Subarrays containing all three characters](https://leetcode.com/problems/number-of-substrings-containing-all-three-characters)
 
-
-- When it fails
+- **When it fails**
 	- If knowing one element at the edges of the window does not tell you how to update the state of the window, or whether it becomes valid
 	- If adding one element could either increase or decrease the window' state
 	- If it is hard to check whether adding or remove from only one end at a time would ever make it valid
+	- [General summary of what kind of problem can/ cannot solved by Two Pointers](https://leetcode.com/problems/subarray-sum-equals-k/solutions/301242/General-summary-of-what-kind-of-problem-can-cannot-solved-by-Two-Pointers/)
