@@ -10,3 +10,83 @@
 	- Max Heap: value of parent always larger than value of children
 	- Min Heap: value of parent always smaller than value of children
 ![](https://i.imgur.com/g7lG6ao.png)
+
+Example:
+https://leetcode.com/problems/kth-largest-element-in-an-array/description/
+- Most basic use of heap
+```python
+def findKthLargest(self, nums: List[int], k: int) -> int:
+	heap = []
+	
+	for num in nums:
+		heapq.heappush(heap, num)
+
+		if len(heap) > k:
+			heapq.heappop(heap)
+
+	return heapq.heappop(heap)
+```
+
+- Top K Frequent Element - https://leetcode.com/problems/top-k-frequent-elements/
+	- Also pretty standard and straightforward use of heap
+```python
+def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        frequency = {}
+        for num in nums:
+            if num not in frequency:
+                frequency[num] = 0
+            frequency[num] +=1
+        
+        items = [(-freq, num) for num, freq in frequency.items()]
+        heapq.heapify(items)
+        
+        result = []
+        for i in range(k):
+            freq, num = heapq.heappop(items)
+            result.append(num)
+            
+        return result
+```
+
+**NOTES**: `heapq.heapify` in python creates a *min heap* by default, if we want a *max heap*, we can multiply all value by -1 as seen in the code above (where we do `-freq` ) 
+
+https://leetcode.com/problems/meeting-rooms-ii/description/
+```python
+def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+	# this can be thought of as occupying room
+	heap = []
+	intervals.sort()
+	heapq.heappush(heap, intervals[0][1])
+
+	for start, end in intervals[1:]:
+		# free up a room by popping it off the heap
+		if heap[0] <= start:
+			heapq.heappop(heap)
+		heapq.heappush(heap, end)
+	
+	return len(heap)
+```
+
+https://leetcode.com/problems/brightest-position-on-street
+- We can also use a *HashMap* to store the range differences too
+	- This can be especially *helpful when we have to deal with negative ranges*
+```python
+def brightestPosition(self, lights: List[List[int]]) -> int:
+	diff = collections.defaultdict(int)
+
+	for i, dist in lights:
+		diff[i-dist] += 1
+		diff[i+dist+1] -= 1
+
+	cur_sum = 0
+	max_idx = 0
+	max_val = 0
+
+	for idx, val in sorted(diff.items()):
+		cur_sum += val
+		if cur_sum > max_val:
+			max_val = cur_sum
+			max_idx = idx
+	
+	return max_idx
+```

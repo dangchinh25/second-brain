@@ -3,6 +3,61 @@
 - **DFS**
 	- The idea is usually to use recursion and recursively traverse the left and right subtree while performing some operation
 	- Sometimes it's helpful to use another params in the recursive function to keep track of some data (eg: path sum, current node path, etc)
+
+- **Preorder Traversal**
+```python
+def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+	if not root:
+		return []
+
+	left = self.preorderTraversal(root.left)
+	right = self.preorderTraversal(root.right)
+
+	return [root.val] + left + right
+```
+- **Inorder Traversal
+```python
+def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+	if not root:
+		return []
+
+	left = self.inorderTraversal(root.left)
+	right = self.inorderTraversal(root.right)
+
+	return left + [root.val]+ right
+```
+- **Postorder Traversal
+```python
+def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+	if not root:
+		return []
+
+	left = self.postorderTraversal(root.left)
+	right = self.postorderTraversal(root.right)
+
+	return left + right + [root.val]
+```
+
+
+- Example:
+https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
+```python
+def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder or not inorder:
+            return None
+
+        root = TreeNode(preorder[0])
+        # We can use rootIndex of inorder because
+        # preorder: root + left + right
+        # inorder: left + root + right
+        # So we can use the rootIndex to split the preorder and inoder to 2 subarrays
+        rootIndex = inorder.index(root.val)
+        root.left = self.buildTree(preorder[1:rootIndex+1], inorder[:rootIndex+1])
+        root.right = self.buildTree(preorder[rootIndex+1:], inorder[rootIndex+1:])
+
+        return root
+```
+
 ```python
 # https://leetcode.com/problems/path-sum/
 def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:

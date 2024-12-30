@@ -1,3 +1,6 @@
+- **HAVE TO USE THIS**: https://github.com/HaolinZhong/PMCA?tab=readme-ov-file
+	- https://www.growthengineering.co.uk/forgetting-curve/
+
 - If input is array
 	- Traversing from the right
 	- Sort the array

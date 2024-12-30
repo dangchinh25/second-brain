@@ -520,11 +520,10 @@ When Kadane’s doesn’t work, consider these alternatives:
 - Must read:
 	- https://leetcode.com/discuss/study-guide/458695/Dynamic-Programming-Patterns
 	- https://leetcode.com/discuss/study-guide/1308617/Dynamic-Programming-Patterns
+	- https://leetcode.com/discuss/study-guide/1490172/Dynamic-programming-is-simple
 - Problems set:
 	- https://leetcode.com/discuss/general-discussion/1000929/solved-all-dynamic-programming-dp-problems-in-7-months
 	- https://www.reddit.com/r/leetcode/comments/14o10jd/the_ultimate_dynamic_programming_roadmap/
-- https://leetcode.com/discuss/study-guide/1490172/Dynamic-programming-is-simple
 - https://leetcode.com/discuss/career/1029985/losing-all-hopes-of-coding-please-help
 - https://leetcode.com/discuss/study-guide/662866/DP-for-Beginners-Problems-or-Patterns-or-Sample-Solutions
-- https://leetcode.com/discuss/general-discussion/475924/my-experience-and-notes-for-learning-dp
 - https://leetcode.com/problems/target-sum/discuss/455024/dp-is-easy-5-steps-to-think-through-dp-questions/424058

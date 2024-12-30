@@ -119,7 +119,7 @@ def minimumSize(self, nums: List[int], maxOperations: int) -> int:
 	return left
 ```
 
-https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/description/
+https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store
 ```python
 def minimizedMaximum(self, n: int, quantities: List[int]) -> int:
 	def canSplit(num):
@@ -140,6 +140,102 @@ def minimizedMaximum(self, n: int, quantities: List[int]) -> int:
 		else:
 			left = mid + 1
 	return left
+```
+
+https://leetcode.com/problems/maximum-candies-allocated-to-k-children/description/
+- Similar intuition
+```python
+ def maximumCandies(self, candies: List[int], k: int) -> int:
+	def canAllocate(num):
+		count = 0
+		for c in candies:
+			count += c // num
+		return count >= k
+	
+	left, right = 1, max(candies)
+	res = 0
+
+	while left <= right:
+		mid = left + (right - left)//2
+		if canAllocate(mid):
+			res = max(res, mid)
+			left = mid + 1
+		else:
+			right = mid - 1
+	return res
+```
+
+## Tips:
+When implementing binary search, choosing between left <= right vs left < right or using right = mid vs right = mid - 1 depends on:
+1. **Inclusivity of Bounds**:
+• left <= right: Used when right is a valid candidate for the answer.
+• left < right: Used when right is not a valid candidate, so the range [left, right] reduces to [left, mid) or (mid, right].
+
+2. **Mid Calculation**:
+• Always calculate mid = left + (right - left) // 2 to avoid overflow.
+
+3. **Shrinking the Range**:
+• right = mid - 1: Excludes mid from the search space, typically when mid has already been validated as not meeting the condition.
+• right = mid: Includes mid in the search space if mid is a possible answer.
+
+**Tricks**: 
+- If we want to include the `right` value as a candidate to the answer and avoid infinite loop
+	- Do `left <= right` and when shrinking the range, do `right = mid - 1` => if `mid` is a valid answer, we already account for it by the `left == right` case
+	- Do `left < right` and when shrinking the range, do `right = mid`, **but we have to initialize `right = max(searchSpace) + 1`  so that we include it by default
+
+
+https://leetcode.com/problems/magnetic-force-between-two-balls
+- This is also a good one
+```python
+ def maxDistance(self, position: List[int], m: int) -> int:
+	position = sorted(position)
+	
+	def canDistribute(force):
+		count = 1
+		pos = position[0]
+
+		for i in range(1, len(position)):
+			if position[i] - pos >= force:
+				count += 1
+				pos = position[i]
+		return count >= m
+	
+	left, right = 0, position[-1] - position[0]
+	# left <= right because right value is also a valid answer
+	while left <= right:
+		mid = left + (right-left)//2
+		# exclude mid from the search
+		if canDistribute(mid):
+			left = mid + 1
+		else:
+			right = mid - 1
+	return left - 1 # handle left == right in the last iteration
+```
+
+https://leetcode.com/problems/search-in-rotated-sorted-array/description/
+```python
+def search(self, nums: List[int], target: int) -> int:
+	left, right = 0, len(nums) - 1
+	while left <= right:
+		mid = left + (right-left)//2
+
+		if nums[mid] == target:
+			return mid
+		
+		# Case 2: subarray on mid's left is sorted
+		elif nums[mid] >= nums[left]:
+			if target >= nums[left] and target < nums[mid]:
+				right = mid - 1
+			else:
+				left = mid + 1
+		# Case 3: subarray on mid's right is sorted.
+		else:
+			if target <= nums[right] and target > nums[mid]:
+				left = mid + 1
+			else:
+				right = mid - 1
+	
+	return -1
 ```
 ## Resources:
 - https://leetcode.com/discuss/study-guide/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems

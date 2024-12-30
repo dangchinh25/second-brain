@@ -13,6 +13,7 @@
 - [[Sliding Window]]
 
 ## 2. Two pointers or Iterators
+[[Two Pointer]]
 - Two Pointers is a pattern where two pointers iterate through the data structure in tandem until one or both of the pointers hit a certain condition
 - Two Pointers is often useful when searching pairs in a sorted array or linked list
 - Two Pointers are needed because with just pointer, you would have to continually loop back through the array to find the answer, this back and forth with a single iterator is inefficient for time and space complexity
@@ -93,6 +94,7 @@ Common problems you use the modified binary search pattern
 	- Search in a Sorted Infinite Array
 
 ## 12. Top K elements
+[[Heap]]
 - Any problem that asks us to find the top/smallest/frequent "K" elements among a given set falls under this pattern
 - The best data structure to keep track of "K" elements is Heap. This pattern will make use of the Heap to solve multiple problems dealing with "K" elements at a time from a set of given elements.
 
@@ -116,7 +118,7 @@ Common problems you use the modified binary search pattern
 
 ## 14. Topological sort
 - Topological Sort is used to find a linear ordering of elements that have dependencies on each other (event B is dependent on event A, A comes before B in topological ordering)
-- [[Topological Sort]]
+- [[Graph#Topological Sort]]
 - Some ways to identify that the given problem might require a Topological Sort pattern
 	- The problem will deal with graphs that have no directed cycles
 	- If you're asked to update all objects in a sorted order

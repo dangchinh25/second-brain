@@ -30,7 +30,7 @@ def removeElement(self, nums: List[int], val: int) -> int:
 
 **8. When working with graph, if asked about number of connected node or sth that does not necessarily require traversal, maybe try counting indegree-outdegree**
 
-**9. When working with problem that requires validity of parentheses or stuff like, one trick is to use a stack and try to add opening and when meet a closing we can either pop the top of the stack if the top is an opening or add if otherwise. We can also consider save the index of the parentheses when adding to the stack*
+**9. When working with problem that requires validity of parentheses or stuff like, one trick is to use a stack and try to add opening and when meet a closing we can either pop the top of the stack if the top is an opening or add if otherwise. We can also consider save the index of the parentheses when adding to the stack**
 
 **10. Another trick when dealing with validity of parenthesis is to count the number of orphan. We will traverse the string on 2 pass, 1 from left to right to count orphan closing and then from right to left to count orphan opening.**
 	- Ref: https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/solutions/1646594/left-to-right-and-right-to-left/?orderBy=most_votes

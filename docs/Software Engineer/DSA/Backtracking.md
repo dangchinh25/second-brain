@@ -32,12 +32,10 @@ def backtrack(arguments) {
 	current.pop();   // Abandon candidate.
 	backtrack(arguments) // Explore case when this candidate is not included
 }
-
-
 ```
 - The idea is that we keep a `set/array` or sth similar to keep track of what is currently being explored
 - Before the actual processing we add new item in the `set/array` to indicate that we gonna explore that item, and after done processing we pop the item out to begin a new loop to explore another item.
-- **It's also worth noting that usually the working set holds the value that later on can be pushed to the result array
+- **It's also worth noting that usually the working set holds the value that later on can be pushed to the result array**
 > Choose => Process => Unchoose
 - It is also important to understand what argument should we used for the `helper()` function that will explore an item. Normally it's gonna be the `location`(?) or some kind of identifier for the item that we are current tracking
 - Ref: [[Blind 75-150#^3a0803| Combination sum]]
@@ -89,9 +87,9 @@ https://leetcode.com/problems/combinations/
 - This problem is quite common where we want to generate a combination from a list with duplication => Sort it [[Cheap Trick#^73797d | Duplication handling trick]]
 	- The intuition behind this is that at each step, we have 2 decision `include or not include`. Let's say we are exploring `include` case, we know what somewhere down the line we probably handle the case where we `include index + 1`, so we want to skip that?
 
-
-- **Permutation**: Another trick pattern in backtracking is Permutation where we want to check possible permutation of an array. Pretty classic backtracking where we want to explore all permutation starts from each value and pop it out and explore the next one. The idea is we once we choose to include an index, we can remove it from the array and use the new array for the recursive call so that it only get permutation for the smaller subarray. For the following example: If choose index 0, the recursive call will only operate on the subarray without the index 0.
+- **Permutation**: Another trick pattern in backtracking is Permutation where we want to check possible permutation of an array. Pretty classic backtracking where we want to explore all permutation starts from each value and pop it out and explore the next one. The idea is  once we choose to include an index, we can remove it from the array and use the new array for the recursive call so that it only get permutation for the smaller subarray. For the following example: If choose index 0, the recursive call will only operate on the subarray without the index 0.
 	- [[Useful math#^082db8 | Useful math: Calculate total of permutations]]
+https://leetcode.com/problems/permutations/
 ```python
 def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
@@ -164,6 +162,35 @@ https://leetcode.com/problems/fair-distribution-of-cookies/description/
 		return False
 
 	return backtrack(0)
+```
+
+https://leetcode.com/problems/palindrome-partitioning/description/
+```python
+def partition(self, s: str) -> List[List[str]]:
+	res = []
+	parts = []
+
+	def dfs(i):
+		if i >= len(s):
+			res.append(parts.copy())
+			return
+		
+		for j in range(i, len(s)):
+			if isPalindrome(s, i, j):
+				parts.append(s[i:j+1])
+				dfs(j+1)
+				parts.pop()
+	
+	def isPalindrome(s, l, r):
+		while l < r:
+			if s[l] != s[r]:
+				return False
+			l += 1
+			r -= 1
+		return True
+	
+	dfs(0)
+	return res
 ```
 ## Different vs Dynamic Programming
 - Unlike [[DP | Dynamic Programming]], backtracking is typically not looking for one optimal situation, but is instead looking for **all that satisfy some criteria**.
