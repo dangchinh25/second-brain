@@ -1,0 +1,2 @@
+- Total of permutations for a given array: `n!/(n-k)!` where `k` is the number of element we are trying to arrange ^082db8
+- Total number of subset for a given array is `2^n`

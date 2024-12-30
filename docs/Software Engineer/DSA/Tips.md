@@ -1,0 +1,51 @@
+- **HAVE TO USE THIS**: https://github.com/HaolinZhong/PMCA?tab=readme-ov-file
+	- https://www.growthengineering.co.uk/forgetting-curve/
+
+- If input is array
+	- Traversing from the right
+	- Sort the array
+	- Precomputation (Prefix + Postfix)
+		- If asked for sum kind of continuous sum
+		- We can compute the prefix and save the index somewhere so that we can calculate the current sum by minus the prefix sum of the unnecessary subarray before the current one
+	- Traverse the array more than once
+	- Count the frequency of appearance
+	- Mark the value in one pass, second pass check value if marked/not marked
+- If input array is sorted
+	- [[14 Patterns DSA#11. Modified binary search | Binary Search]]
+	- [[14 Patterns DSA#2. Two pointers or Iterators | Two pointers]]
+- If asked for next greater/smaller/etc
+	- [[Monotonic Stack]]
+- If asked for all permutations/subsets
+	- [[Backtracking]]
+- If given a tree
+	- [[14 Patterns DSA#7. Tree BFS | Tree BFS]]
+	- [[14 Patterns DSA#8. Tree DFS | Tree DFS]]
+- If given a linked list
+	- [[14 Patterns DSA#2. Two pointers or Iterators | Two pointers]]
+	- [[Linked List]]
+- If recursion is banned then
+	- Stack
+- If must solve in-place then
+	- Swap corresponding values
+	- Store one or more different values in the same pointer
+	- [[Cheap Trick#^d1d4dc | Remove Value]]
+- If asked for maximum/minimum subarray/subset/options then
+	- Dynamic programming
+- If asked for top/least K items then
+	- [[14 Patterns DSA#12. Top K elements | Heap]]
+		- We not always need to use a heap, we only need a heap if we need to pop value and push value many times. Otherwise if we only need to get K most something element then we can just simply construct a tuple and use python sort
+		- In some cases, heap may not lead us directly to the result but instead it can just acts as a way to select the next candidate to be processed, and when we have that candidate we can process it and then put it back into the heap with different value if there is a need to process it again 
+	- QuickSelect
+- If there is a dependencies map where one depends on each other
+	- [[Topological Sort]]
+- If asked for common strings then
+	- Map
+	- Trie
+
+- Graph pattern:
+	- Have a visit map to save node that has already been check, add to that map in each call
+	- If given a border requirement, consider checking all the border cell first and work backward in 
+
+Else
+- Map/Set for O(1) time & O(n) space
+- Sort input for O(nlogn) time and O(1) space
